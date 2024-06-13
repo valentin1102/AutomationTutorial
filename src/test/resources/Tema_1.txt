@@ -1,0 +1,21 @@
+Tema 1
+
+Creem doua noi clasa cu numele "Homework1" si "HomeworkTest" 
+Afiseaza pe ecran urmatoarele:
+PENTRU FIECARE LINIE SE DECLARA VARIABILE NOI
+
+1. Hello World
+2. Varsta ta (numar)
+3. Numele si prenumele pe 2 randuri
+4. Adauga la "Salut" caracterul "M" la final
+5. Adauga la "Hello" caracterul "H" la inceput
+6. Adauga la "Ana are mere,pere,prune" dupa fiecare vocala de la finalul cuvantului caracterul "Z"
+7. Adauga la toate rezultatele obtinute " Poti pleca acasa dupa ce iti verific munca!"
+8. Afisam in consola salariul unui angajat daca acesta are prenumele Andrei;
+9. Afisam in consola ID de angajat si Departamentul din care face parte un angajat daca numele acestuia este "Popescu"
+10. Utilizand o metoda cu parametrii afisati numarul unui departament daca acesta este mai mare de 287;
+
+
+! BONUS !
+Afisati in consola rezultatul ecuatiei:[2+(3*4)-3]/3 ?
+  Rezultatul corect este: {rezultatul}
