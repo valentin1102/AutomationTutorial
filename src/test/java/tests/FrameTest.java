@@ -9,6 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import pages.AlertsWindowsPage;
+import pages.FramePage;
+import pages.HomePage;
+import pages.NestedFramePage;
 
 import java.time.Duration;
 
@@ -35,42 +39,19 @@ public class FrameTest {
         PageMethods pageMethods = new PageMethods(driver);
         FrameMethods frameMethods = new FrameMethods(driver);
 
-        // Facem un scroll la pagina pentru vizibilitate
-        pageMethods.scrollPage(0,350);
+        HomePage homePage = new HomePage(driver);
+        homePage.navigatetoAlertMenu();
 
-        // Interactionam cu meniul/submeniul de pe site
-        WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementMethod.clickElement(alertsMenu);
+        AlertsWindowsPage alertsWindowsPage = new AlertsWindowsPage(driver);
+        alertsWindowsPage.navigateToFramePage();
 
-        WebElement framesSubmenu = driver.findElement(By.xpath("//span[text()='Frames']"));
-        elementMethod.clickElement(framesSubmenu);
 
-        //ne mutam cu focusul pe un iFrame
-        frameMethods.switchFrame("frame1");
+        FramePage framePage = new FramePage(driver);
+        framePage.interactWithBigIframe();
+        framePage.interactWithSmallIframe();
+        framePage.interactWithNestedFrame();
 
-        WebElement iFrameText=driver.findElement(By.id("sampleHeading"));
-        System.out.println(iFrameText.getText());
-
-        //ne intoarcem cu focusul la frame-ul default
-        frameMethods.switchDefault();
-
-        frameMethods.switchFrame("frame2");
-
-        WebElement iFrameText2=driver.findElement(By.id("sampleHeading"));
-        System.out.println(iFrameText2.getText());
-
-        frameMethods.switchDefault();
-
-        WebElement nestedFrames = driver.findElement(By.xpath("//span[text()='Nested Frames']"));
-        elementMethod.clickElement(nestedFrames);
-
-        //interactionam cu iframe in iframe
-        frameMethods.switchFrame("frame1");
-
-        WebElement childFrame = driver.findElement(By.xpath("//iframe[@srcdoc='<p>Child Iframe</p>']"));
-        frameMethods.switchFrame(childFrame);
-
-        WebElement childText = driver.findElement(By.xpath("//p"));
-        System.out.println(childText.getText());
+        NestedFramePage nestedFramePage = new NestedFramePage(driver);
+        nestedFramePage.interactWithNestedFrame();
     }
 }
