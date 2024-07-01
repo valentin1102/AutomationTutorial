@@ -1,9 +1,8 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import HelperMethods.ElementMethod;
+import HelperMethods.PageMethods;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -25,72 +24,73 @@ public class WebTableTest {
         // Facem browserul in modul maximize/
         driver.manage().window().maximize();
 
+        //Obiecte
+        PageMethods pageMethods = new PageMethods(driver);
+        ElementMethod elementMethod = new ElementMethod(driver);
+
         // Facem un scroll la pagina pentru vizibilitate
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,350)", "");
+        pageMethods.scrollPage(0,365);
 
         // Interactionam cu meniul/submeniul de pe site
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementsMenu.click();
+        elementMethod.clickElement(elementsMenu);
 
         WebElement webTableSubmenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        webTableSubmenu.click();
+        elementMethod.clickElement(webTableSubmenu);
 
         // Definim un element dupa ID
         // Test 1: Adaug un nou entry
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementMethod.clickElement(addElement);
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         String firstNameValue = "Valentin";
-        firstNameElement.sendKeys(firstNameValue);
+        elementMethod.fillElement(firstNameElement, firstNameValue);
 
         WebElement lastNameElement = driver.findElement(By.id("lastName"));
         String lastNameValue = "Stoica";
-        lastNameElement.sendKeys(lastNameValue);
+        elementMethod.fillElement(lastNameElement, lastNameValue);
 
         WebElement userEmailElement = driver.findElement(By.id("userEmail"));
         String UserEmailValue = "valentin@stoica.com";
-        userEmailElement.sendKeys(UserEmailValue);
+        elementMethod.fillElement(userEmailElement, UserEmailValue);
 
         WebElement ageElement = driver.findElement(By.id("age"));
         String ageValue = "34";
-        ageElement.sendKeys(ageValue);
+        elementMethod.fillElement(ageElement, ageValue);
 
         WebElement salaryElement = driver.findElement(By.id("salary"));
         String salaryValue = "1000";
-        salaryElement.sendKeys(salaryValue);
+        elementMethod.fillElement(salaryElement, salaryValue);
 
         WebElement departmentElement = driver.findElement(By.id("department"));
         String departmentValue = "CFS";
-        departmentElement.sendKeys(departmentValue);
+        elementMethod.fillElement(departmentElement, departmentValue);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
-        submitElement.click();
+        elementMethod.clickElement(submitElement);
 
         // Test 2: Modific un entry existent
 
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        editElement.click();
+        elementMethod.clickElement(editElement);
 
         WebElement editfirstNameElement = driver.findElement(By.id("firstName"));
         String editfirstNameValue = "Alexei";
-        editfirstNameElement.clear();
-        editfirstNameElement.sendKeys(editfirstNameValue);
+        elementMethod.clearFillElement(editfirstNameElement, editfirstNameValue);
 
 
         WebElement editsalaryElement = driver.findElement(By.id("salary"));
         String editsalaryValue = "9000";
-        editsalaryElement.clear();
-        editsalaryElement.sendKeys(editsalaryValue);
+        elementMethod.clearFillElement(editsalaryElement, editsalaryValue);
 
         WebElement editsubmitElement = driver.findElement(By.id("submit"));
-        editsubmitElement.click();
+        elementMethod.clickElement(editsubmitElement);
 
         // Test 3: Stergem un entry existent
 
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        deleteElement.click();
+        elementMethod.clickElement(deleteElement);
 
         //Test 4: Inchidem browserul
         
