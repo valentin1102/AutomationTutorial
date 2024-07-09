@@ -9,6 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import pages.AlertPage;
+import pages.AlertsWindowsPage;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -30,45 +33,18 @@ public class AlertTest {
         //wait implicit
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        //Definim un obiect de tip alert methods ca sa apelam metodele generale din clasa
-        AlertMethods alertMethods = new AlertMethods(driver);
-        ElementMethod elementMethod = new ElementMethod(driver);
-        PageMethods pageMethods = new PageMethods(driver);
 
-        // Facem un scroll la pagina pentru vizibilitate
-        pageMethods.scrollPage(0,350);
+        HomePage homepage = new HomePage(driver);
+        homepage.navigatetoAlertMenu();
 
-        // Interactionam cu meniul/submeniul de pe site
-        WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementMethod.clickElement(alertsMenu);
+        AlertsWindowsPage alertsWindowsPage = new AlertsWindowsPage(driver);
+        alertsWindowsPage.navigateToAlertsForm();
 
-        WebElement alertsSubmenu = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        elementMethod.clickElement(alertsSubmenu);
-
-        //Interactionam cu o alerta
-        WebElement alertOKButton = driver.findElement(By.id("alertButton"));
-        elementMethod.clickElement(alertOKButton);
-
-        alertMethods.acceptAlert();
-
-        //Interactionam cu confirm button
-        WebElement confirmAlertButton = driver.findElement(By.id("confirmButton"));
-        elementMethod.clickElement(confirmAlertButton);
-
-        alertMethods.dismissButton();
-
-        //Interactionam cu prompt button
-        WebElement promptButton = driver.findElement(By.id("promtButton"));
-        elementMethod.clickElement(promptButton);
-
-        alertMethods.fillAlert("Valentin");
-
-        //Interactionam cu o alerta pentru care trebuie sa asteptam 5 secunde
-        WebElement alertDelayButton = driver.findElement(By.id("timerAlertButton"));
-        elementMethod.clickElement(alertDelayButton);
-
-        alertMethods.acceptAlert();
-
+        AlertPage alertPage = new AlertPage(driver);
+        alertPage.interactAlertOk();
+        alertPage.interactPromptButton("Valentin");
+        alertPage.confirmationAlert();
+        alertPage.interactTimerButton();
     }
 
 
