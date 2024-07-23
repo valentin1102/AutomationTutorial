@@ -1,37 +1,25 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.AlertsWindowsPage;
 import pages.HomePage;
 import pages.WindowsPage;
+import sharedData.SharedData;
 
-public class WindowTest {
-
-    public WebDriver driver;
+public class WindowTest extends SharedData {
 
     @Test
     public void methodTest(){
 
-        driver = new ChromeDriver();
 
-        driver.get("https://demoqa.com/");
-
-        driver.manage().window().maximize();
-
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.navigatetoAlertMenu();
 
-        AlertsWindowsPage alertsWindows = new AlertsWindowsPage(driver);
+        AlertsWindowsPage alertsWindows = new AlertsWindowsPage(getDriver());
         alertsWindows.navigateToWindowPage();
 
-        WindowsPage windowsPage = new WindowsPage(driver);
+        WindowsPage windowsPage = new WindowsPage(getDriver());
         windowsPage.interactWithNewTab();
         windowsPage.interactWithNewWindow();
-
-        driver.quit();
     }
 }

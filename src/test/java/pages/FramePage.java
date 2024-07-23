@@ -1,39 +1,23 @@
 package pages;
 
-import HelperMethods.ElementMethod;
-import HelperMethods.FrameMethods;
-import HelperMethods.PageMethods;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class FramePage {
+public class FramePage extends BasePage {
 
-    public WebDriver driver;
-    public ElementMethod elementMethod;
-    public PageMethods pageMethods;
-    public FrameMethods frameMethods;
-
-    public FramePage(WebDriver driver){
-        this.driver = driver;
-        elementMethod = new ElementMethod(driver);
-        pageMethods = new PageMethods(driver);
-        frameMethods = new FrameMethods(driver);
-        PageFactory.initElements(driver, this);
+    public FramePage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(id = "sampleHeading")
-    public WebElement iFrameText;
+    private WebElement iFrameText;
 
     @FindBy(id = "sampleHeading")
-    public WebElement iFrameText2;
+    private WebElement iFrameText2;
 
     @FindBy(xpath = "//span[text()='Nested Frames']")
-    public WebElement nestedFrames;
-
-
+    private WebElement nestedFrames;
 
     public void interactWithBigIframe(){
 
@@ -50,6 +34,6 @@ public class FramePage {
 
     public void interactWithNestedFrame(){
         pageMethods.scrollPage(0,350);
-        elementMethod.clickElement(nestedFrames);
+        elementMethods.clickElement(nestedFrames);
     }
 }

@@ -1,57 +1,30 @@
 package tests;
 
-import HelperMethods.AlertMethods;
-import HelperMethods.ElementMethod;
-import HelperMethods.FrameMethods;
-import HelperMethods.PageMethods;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.AlertsWindowsPage;
 import pages.FramePage;
 import pages.HomePage;
 import pages.NestedFramePage;
+import sharedData.SharedData;
 
-import java.time.Duration;
-
-public class FrameTest {
-
-    public WebDriver driver;
+public class FrameTest extends SharedData {
 
     @Test
     public void metodaTest() {
 
-        driver = new ChromeDriver();
-
-        // Accesam un anumit URL
-        driver.get("https://demoqa.com/");
-
-        // Facem browserul in modul maximize/
-        driver.manage().window().maximize();
-
-        //wait implicit
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        AlertMethods alertMethods = new AlertMethods(driver);
-        ElementMethod elementMethod = new ElementMethod(driver);
-        PageMethods pageMethods = new PageMethods(driver);
-        FrameMethods frameMethods = new FrameMethods(driver);
-
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.navigatetoAlertMenu();
 
-        AlertsWindowsPage alertsWindowsPage = new AlertsWindowsPage(driver);
+        AlertsWindowsPage alertsWindowsPage = new AlertsWindowsPage(getDriver());
         alertsWindowsPage.navigateToFramePage();
 
 
-        FramePage framePage = new FramePage(driver);
+        FramePage framePage = new FramePage(getDriver());
         framePage.interactWithBigIframe();
         framePage.interactWithSmallIframe();
         framePage.interactWithNestedFrame();
 
-        NestedFramePage nestedFramePage = new NestedFramePage(driver);
+        NestedFramePage nestedFramePage = new NestedFramePage(getDriver());
         nestedFramePage.interactWithNestedFrame();
     }
 }
