@@ -1,0 +1,14 @@
+{
+  "firstNameValue": "Valentin",
+  "lastNameValue": "Stoica",
+  "userEmailValue": "blabla@yahoo.com",
+  "genderValue": "Male",
+  "userNumberValue": "0755939013",
+  "dateOfBirthDaysValue": "11",
+  "subjectsInputValue": "Arts",
+  "hobbiesValue": ["Sports", "Music"],
+  "picturePathValue": "Tema_1.txt",
+  "currentAddressValue": "Str. Hohoho",
+  "stateElementValue": "Uttar Pradesh",
+  "cityValue": "Agra"
+}
